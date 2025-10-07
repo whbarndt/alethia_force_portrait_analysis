@@ -1,0 +1,88 @@
+# Aletheia Fractal Analysis Configuration
+
+# Data and output settings
+data:
+  base_path: '/home/echo/Desktop/Taylor_Lab/AletheiaRunData/'
+  interpolated_file: 'interpdata.csv'
+  raw_file: 'rotatedata.csv'  # raw data file name
+  # Data file to use for batch mode discovery and interpolation source
+  data_file_to_use: 'interpdata.csv'  # 'interpolated_file' or 'raw_file'
+
+output:
+  base_output_directory: './output'  # Base directory for all outputs (logs, plots, results, CSV files)
+
+# Single dataset processing settings
+single:
+  person: 'P036'
+  speed: '05-0mph'
+  run_id: '1339'
+
+# Batch processing settings
+batch:
+  enabled: false  # Set to true to process multiple datasets from data_to_run.csv
+
+# Interpolation settings
+interpolation:
+  enabled: false          # Set to false to use pre-interpolated data
+  factor: 100             # How many times to increase resolution
+  method: 'cubic_spline'  # 'cubic_spline' or 'linear'
+  save_interpolated: true # Save interpolated data to file with "_interpolated" suffix
+
+# Analysis parameters
+analysis:
+  min_box_divisions: 5
+  max_box_divisions: 500  # Multiplier for max divisions calculation
+  num_box_scales: 25      # Number of box counting scales to test
+  min_fit_points: 5       # Minimum points for linear regression fit for all fits
+  minimum_kept_D: 1.2     # Minimum D to keep for analysis
+  maximum_kept_D: 2.8     # Maximum D to keep for analysis
+  min_span_orders: 1.0    # Minimum orders of magnitude span for best fits
+  export_all_fits_csv: true  # Export all possible fits to CSV files
+  
+  # Fractal dimension calculation method
+  use_sliding_grid: false # Set to true for sliding grid method (more accurate but slower)
+  grid_shifts: 5          # Number of grid shifts to try in sliding grid method (higher = more accurate but slower)
+  trajectory_aware: false # Set to true for trajectory-aware box counting (accounts for line segments) - TESTING STANDARD
+
+# Visualization settings
+visualization:
+  figure_size: [12, 8]        # Increased width for 3D plots
+  dpi: 300
+  save_format: 'png'
+  plot_3d_trajectory: true   # Set to true to include 3D trajectory plot
+  interactive_3d: true       # Set to true for interactive 3D plot (requires plotly)
+  density_coloring: true     # Set to true for density-based color coding in 3D plots
+  # 3D plot specific settings
+  scatter_alpha: 0.1          # Transparency of scatter points
+  scatter_size: 0.05          # Size of scatter points
+  line_width: 0.2             # Width of trajectory line
+  colormap: 'plasma'          # Colormap for density coloring
+  
+  # Custom range plot settings
+  custom_range_enabled: true  # Set to true to create custom range plot
+  custom_start: 8             # Start index for custom range plot (null to disable)
+  custom_end: 15               # End index for custom range plot (null to disable)
+  
+  # Feature space division depth visualization settings
+  div_depth_visualization:
+    enabled: true             # Set to true to create div depth visualizations
+    selected_divs: []         # Specific div values to visualize (empty = auto-select)
+    max_plots: 6              # Maximum number of individual div plots to create
+  
+  # Individual box contents visualization settings
+  individual_box_visualization:
+    enabled: true             # Set to true to create individual box visualizations
+    target_div: null         # Specific div value to analyze boxes (null = use middle div)
+    max_boxes_to_show: 4     # Maximum number of boxes to visualize
+    box_selection_method: 'most_points'  # 'most_points', 'random', 'spread'
+
+# Density analysis settings
+density:
+  save_density_calculations: true # Set to true to save density calculations for reuse
+  calculation_format: 'csv'       # Format for saving calculations: 'csv' (recommended) or 'npz'
+
+# Logging
+logging:
+  level: 'INFO'         # INFO, DEBUG, WARNING, ERROR
+  include_console: true # Set to true to show console output
+  include_file: true    # Set to true to output to a file

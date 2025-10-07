@@ -1,0 +1,25 @@
+# D vs Velocity Plotting Configuration
+
+# Output settings
+output:
+  base_output_directory: './output'  # Base directory for outputs (plots will be saved in plots/d_vs_velocity/)
+
+# Visualization settings
+visualization:
+  figure_size: [12, 8]        # Figure size [width, height] in inches
+  dpi: 300                     # Dots per inch for saved plots
+  save_format: 'png'           # Format for saved plots ('png', 'pdf', 'svg')
+
+# Logging settings
+logging:
+  level: 'INFO'                # Logging level: DEBUG, INFO, WARNING, ERROR
+  include_console: true        # Show console output
+  include_file: true          # Save logs to file
+
+# Plotting parameters (optional - can be overridden by command line)
+plotting:
+  d_selection: 'best'          # Which D value to use: 'best', 'highest_r2', 'median', 'mean'
+  method_filter: null         # Filter by method: 'sliding_grid', 'fixed_grid', or null for all
+  person_filter: null         # Filter by specific person (e.g., 'P036') or null for all
+  plot_top_n_fits: 5          # Number of top R² fits to plot for each velocity (default: 1 for best fit only)
+  min_order_of_magnitude: 1.5 # Minimum order of magnitude span for filtering (1.0 = 10x range, 1.5 = 31.6x range)
