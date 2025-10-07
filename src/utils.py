@@ -114,7 +114,7 @@ def auto_discover_data_files(base_path, target_file='interpdata.csv'):
                 'person': person,
                 'speed': speed,
                 'run_id': run_id,
-                'file_path': file_path,
+                'file_path': file_path
             }
             
             discovered_datasets.append(dataset_info)
@@ -147,7 +147,7 @@ def save_discovered_datasets_to_csv(datasets, output_dir='./outputs', filename='
             'person': dataset['person'],
             'speed': dataset['speed'],
             'runid': dataset['run_id'],  # Note: using 'runid' to match existing format
-            'file_path': dataset['file_path'],
+            'file_path': dataset['file_path']
         })
     
     df = pd.DataFrame(df_data)
